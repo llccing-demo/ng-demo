@@ -1,6 +1,6 @@
-<p>自定义滑动条, 当前数值为 {{sliderValue}}</p>
+<p>自定义滑动条, 当前数值为 {{ctrl.value}}</p>
 
-<ngx-jquery-slider
-  [value]="sliderValue"
-  (valueChange)="onSliderValueChange($event)"
-></ngx-jquery-slider>
+<ngx-jquery-slider [formControl]="ctrl"></ngx-jquery-slider>
+
+<br />
+<input [value]="ctrl.value" (change)="updateSlider($event)" />

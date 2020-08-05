@@ -6,44 +6,57 @@ import {
   Input,
   Output,
   EventEmitter,
+  forwardRef,
 } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 // 为了使用 jQuery 从而声明
 declare var $: any;
 
+const SLIDER_VALUE_ACCESSOR: any = {
+  // 注意，这里是 provide，不是 provider！！
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => NgxJquerySliderComponent),
+  multi: true,
+};
+
 @Component({
   selector: 'ngx-jquery-slider',
+  providers: [SLIDER_VALUE_ACCESSOR],
   template: ` <div #location></div> `,
   styles: ['div {width: 200px}'],
 })
-export class NgxJquerySliderComponent implements OnInit {
+export class NgxJquerySliderComponent implements ControlValueAccessor {
   @ViewChild('location') location: ElementRef;
-  @Input() value;
-  @Output() private valueChange = new EventEmitter();
   widget;
+  onChange;
+  value;
+
   constructor() {}
 
-  ngOnInit(): void {
-    // 这里要注意，ngOnInit 时 DOM 还没准备好，所以不能取得 DOM
-    // this.widget = $(this.location.nativeElement).slider();
+  writeValue(value) {
+    console.log('writeValue_1', value);
+    this.value = value;
+    if (this.widget && value) {
+      this.widget.slider('value', value);
+    }
+  }
+  registerOnChange(fn) {
+    console.log('registerOnChange_2', fn);
+    this.onChange = fn;
+  }
+  registerOnTouched() {
+    console.log('registerOnTouched_3');
   }
 
   ngAfterViewInit() {
+    console.log('ngAfterViewInit_4');
     this.widget = $(this.location.nativeElement).slider({
+      value: this.value,
       stop: (event, ui) => {
+        this.onChange(ui.value);
         console.log('stop 事件回调', ui.value);
-        this.valueChange.emit(ui.value);
       },
     });
-    this.widget.slider('value', this.value);
   }
-
-  // 注意，这里是 ngOnChanges 不是 ngOnChange，差个 s 浪费好多时间……
-  // 这个方法，实际用不到，因为已经通过 emit 一个事件来修改传入的 value 的来源了
-  //   ngOnChanges() {
-  //     if (this.widget && this.widget.slider('value') !== this.value) {
-  //       console.log('ngOnChange 监测属性变化的钩子', this.widget.slider('value'));
-  //       this.widget.slider('value', this.value);
-  //     }
-  //   }
 }
