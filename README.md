@@ -20,3 +20,14 @@
 参考
 - [https://segmentfault.com/a/1190000014129567](https://segmentfault.com/a/1190000014129567) 北航小哥翻译的内容，很棒
 - [https://github.com/maxkoretskyi/custom-form-control-that-implements-control-value-accessor-and-wraps-jquery-slider](https://github.com/maxkoretskyi/custom-form-control-that-implements-control-value-accessor-and-wraps-jquery-slider) 源码部分
+
+### zorroTable850
+
+- 验证 ng-zorro-antd@8.5.0 版本，table fix column 问题。
+- 发现 datepicker 组件， `[nzInputReadOnly]` 属性在 9.3.0 中才添加。为了解决 ipad 端点击时间控件后，弹出输入框的问题。
+
+
+### zorroTable920
+
+- 验证 ng-zorro-antd@8.5.0 版本，table fix column 问题。
+
