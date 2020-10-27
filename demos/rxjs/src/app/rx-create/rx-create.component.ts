@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { of, from, fromEvent, Subject, Observable, observable } from 'rxjs';
+import { of, from, fromEvent, Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-rx-create',
