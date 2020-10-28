@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { of, from, fromEvent, Subject, Observable } from 'rxjs';
+import { of, from, fromEvent, Subject, Observable, timer, interval } from 'rxjs';
+import { isEmpty } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rx-create',
@@ -7,7 +8,7 @@ import { of, from, fromEvent, Subject, Observable } from 'rxjs';
   styleUrls: ['./rx-create.component.css'],
 })
 export class RxCreateComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     of('Tom', 'bar').subscribe(console.log);
@@ -18,6 +19,8 @@ export class RxCreateComponent implements OnInit {
     from(this.mockFetchData()).subscribe(console.log);
 
     this.createObservables();
+
+    this.isEmpty()
   }
 
   // 创建 observables
@@ -47,5 +50,12 @@ export class RxCreateComponent implements OnInit {
         resolve(data);
       }, 800);
     });
+  }
+
+  // 验证 isEmpty
+  isEmpty() {
+    const source$ = interval(1000)
+    const isEmpty$ = source$.pipe(isEmpty())
+    isEmpty$.subscribe(value => console.log('isEmpty', value))
   }
 }
