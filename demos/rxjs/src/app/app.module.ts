@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RxCreateComponent } from './rx-create/rx-create.component';
 import { ControlStreamComponent } from './control-stream/control-stream.component';
+import { NewValueComponent } from './new-value/new-value.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RxCreateComponent,
-    ControlStreamComponent
+    ControlStreamComponent,
+    NewValueComponent
   ],
   imports: [
     BrowserModule
