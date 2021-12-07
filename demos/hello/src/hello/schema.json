@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "HelloSchematics",
+    "title": "Hello Options Schema",
+    "type": "object",
+    "description": "say hello to the world",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "name to greet",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            },
+            "x-prompt": "What is your name?"
+        },
+        "transform": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "required": ["name"]
+}
