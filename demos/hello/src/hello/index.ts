@@ -13,6 +13,7 @@ export function hello(_options: Schema): Rule {
     }
 
     const sourceTemplates = url('./files');
+    _options.frameworks = ['angular', 'react', 'vue'];
 
     const sourceParametrizedTemplates = apply(sourceTemplates, [
       template({
