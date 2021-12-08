@@ -14,6 +14,10 @@
             },
             "x-prompt": "What is your name?"
         },
+        "project": {
+            "type": "string",
+            "description": "generate in specific Angular CLI workspace project"
+        },
         "transform": {
             "type": "boolean",
             "default": false

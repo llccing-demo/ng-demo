@@ -4,7 +4,7 @@
   "description": "A blank schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "build:watch":"tcs -p tsconfig.json --watch",
+    "build:watch": "tcs -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js"
   },
   "keywords": [
@@ -16,6 +16,7 @@
   "dependencies": {
     "@angular-devkit/core": "^13.0.4",
     "@angular-devkit/schematics": "^13.0.4",
+    "@schematics/angular": "^13.0.4",
     "typescript": "~4.4.3"
   },
   "devDependencies": {
